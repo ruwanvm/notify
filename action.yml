@@ -1,0 +1,28 @@
+name: "Notify message to a Webhook"
+description: "This action is created to notify messages to given webhook"
+author: "Ruwan Mettananda"
+inputs:
+  webhook:
+    description: "Webhook URL"
+    required: true
+  title:
+    description:  "Title of the message"
+    default: "_REPO_NAME_"
+    required: false
+  subtitle:
+    description: "Subtitle of the message"
+    required: false
+    default: "_REPO_BRANCH_"
+  message:
+    description: "Message to be sent"
+    required: true
+  status:
+    description: "Notification Status"
+    default: "SUCCESS"
+    required: false
+outputs:
+  notification_results:
+    description: "Message sending results"
+runs:
+  using: docker
+  image: "Dockerfile"
