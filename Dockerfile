@@ -1,6 +1,10 @@
-FROM python:3.9.7-alpine3.14
-RUN pip install --target=/app requests
+FROM python:3.9.7-alpine3.13 AS builder
+ADD . /app
 WORKDIR /app
-COPY main.py .
+RUN pip install --target=/app requests
+
+FROM gcr.io/distroless/python3-debian10
+COPY --from=builder /app /app
+WORKDIR /app
 ENV PYTHONPATH /app
 CMD ["/app/main.py"]
