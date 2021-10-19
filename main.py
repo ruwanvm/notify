@@ -22,7 +22,12 @@ def main():
         status = ':x:'
 
     encoded_message = {
-        'text': f'''*{title}* {status}\n{subtitle}\n\n{message}'''
+        'text': f'''*{title}* {status}\n{subtitle}''',
+        'attachments': [
+            {
+                'text': message
+            }
+        ]
     }
 
     response = requests.post(webhook, data=json.dumps(encoded_message), headers={'Content-Type': 'application/json'})
